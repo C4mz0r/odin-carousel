@@ -40,7 +40,7 @@ function Carousel() {
 	}
 		
 	
-	this.render = function(direction) {		
+	this.render = function() {		
 						
 		var theImage = this.images[this.currentIndex];
 		$("#view").empty();				
