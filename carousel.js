@@ -4,12 +4,12 @@ function Carousel() {
 	this.currentIndex = 0;	
 	
 	this.next = function() {
-		currentIndex = getNextIndex();		
+		this.currentIndex = this.getNextIndex();		
 		this.render();
 	}
 	
 	this.prev = function() {
-		currentIndex = getPrevIndex();
+		this.currentIndex = this.getPrevIndex();
 		this.render();
 	}
 	
@@ -70,11 +70,21 @@ function Carousel() {
 			self.updateSelectedCircle( $(this).index() );
 		});
 		
-		$("#next").hover(
-			function(){							
+		$("button").hover(
+			function(){
+				var buttonId = $(this).prop("id");
+				
+				if (buttonId !== "next" && buttonId !== "prev")
+					return;
+											
 				$("body").append("<div class='preview-popup'></div>");
-				$(".preview-popup").css('left', $(this).position().left - 100);
-				$(".preview-popup").css('background-image', 'url("'+ self.images[ self.getNextIndex() ] +'")');
+				if ( buttonId === "next") {
+					$(".preview-popup").css('left', $(this).position().left - 100);
+					$(".preview-popup").css('background-image', 'url("'+ self.images[ self.getNextIndex() ] +'")');	
+				} else if ( buttonId === "prev") {
+					$(".preview-popup").css('left', $(this).position().left + $(this).width() + 50 );
+					$(".preview-popup").css('background-image', 'url("'+ self.images[ self.getPrevIndex() ] +'")');
+				}								
 				$(".preview-popup").css('background-size', 'contain');
 				$(".preview-popup").css('background-repeat', 'no-repeat');
 			},
@@ -83,20 +93,7 @@ function Carousel() {
 				$(".preview-popup").remove();
 			}
 		);
-		
-		$("#prev").hover(
-			function(){							
-				$("body").append("<div class='preview-popup'></div>");
-				$(".preview-popup").css('left', $(this).position().left + $(this).width());
-				$(".preview-popup").css('background-image', 'url("'+ self.images[ self.getPrevIndex() ] +'")');
-				$(".preview-popup").css('background-size', 'contain');
-				$(".preview-popup").css('background-repeat', 'no-repeat');
-			},
-		
-			function() {
-				$(".preview-popup").remove();
-			}
-		);
+				
 	}
 	
 	this.generateCarousel = function() {
