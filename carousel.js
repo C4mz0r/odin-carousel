@@ -3,7 +3,7 @@ function Carousel() {
 	 'http://cdn.androidbeat.com/wp-content/uploads/2015/12/google-logo.jpg'];
 	this.currentIndex = 0;	
 	
-	this.next = function() {
+	this.next = function() {	
 		this.currentIndex = this.getNextIndex();		
 		this.render();
 	}
@@ -33,6 +33,7 @@ function Carousel() {
 			this.render();
 		}
 	}
+		
 	
 	this.render = function() {		
 		var theImage = this.images[this.currentIndex];
@@ -45,13 +46,18 @@ function Carousel() {
 		$("#circles > .circle").removeClass('circle-filled');
 		$("#circles > .circle:eq("+this.currentIndex+")").addClass('circle-filled');
 	}
+		
+	var self = this;
+	
+	self.loop = function() {				
+		setInterval(function() {self.next();}, 5000);
+	}
 	
 	this.setup = function() {
 		
 		this.generateCarousel();				
 					
-		// Register event handlers:
-		self = this;
+		// Register event handlers:		
 		
 		$("#next").click(function(){		
 			self.next();			
@@ -74,6 +80,7 @@ function Carousel() {
 			function(){
 				var buttonId = $(this).prop("id");
 				
+				// Leave if this is any button other than next or prev.
 				if (buttonId !== "next" && buttonId !== "prev")
 					return;
 											
@@ -110,16 +117,14 @@ function Carousel() {
 			$("#circles").append("<div class='circle'></div>");
 		}
 	}
-	
-	
+		
 	this.setup();
 	this.render();
 	
-
 }
 
 
 $(function() {	
 	var car = new Carousel();
-	
+	car.loop();	
 });
