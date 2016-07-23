@@ -37,8 +37,12 @@ function Carousel() {
 	
 	this.render = function() {		
 		var theImage = this.images[this.currentIndex];
-		$("#view").empty();		
-		$("#view").append("<img src='"+ theImage +"'>");
+		$("#view").empty();				
+		$("#view").css('background-image', 'url("'+ theImage +'")');
+		$("#view").css('background-size', 'contain');
+		$("#view").css('background-position', 'center center');
+	  $("#view").css('background-repeat', 'no-repeat');
+		
 		this.updateSelectedCircle(this.currentIndex);
 	}
 	
