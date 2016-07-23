@@ -52,3 +52,12 @@
 .circle-filled {
 	background-color: blue;
 }
+
+.preview-popup {
+	position: fixed;
+	width: 50px;
+	height: 50px;
+	border: 3px solid blue;
+	top: 10px;
+	border-radius: 10px;
+}

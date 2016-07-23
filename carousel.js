@@ -4,16 +4,26 @@ function Carousel() {
 	this.currentIndex = 0;	
 	
 	this.next = function() {
-		this.currentIndex++;
-		this.currentIndex %= this.images.length;
+		currentIndex = getNextIndex();		
 		this.render();
 	}
 	
 	this.prev = function() {
-		this.currentIndex--;
-		if (this.currentIndex < 0)
-		  this.currentIndex = this.images.length - 1;
+		currentIndex = getPrevIndex();
 		this.render();
+	}
+	
+	this.getNextIndex = function() {
+		var nextIndex = this.currentIndex + 1;
+		nextIndex %= this.images.length;
+		return nextIndex;
+	}
+	
+	this.getPrevIndex = function() {
+		var prevIndex = this.currentIndex - 1;
+		if (prevIndex < 0)
+		  prevIndex = this.images.length - 1;
+		return prevIndex;
 	}
 	
 	this.goToImage = function(index) {
@@ -58,7 +68,35 @@ function Carousel() {
 		$("#circles > .circle").click(function() {			
 			self.goToImage( $(this).index() ) ;
 			self.updateSelectedCircle( $(this).index() );
-		});		
+		});
+		
+		$("#next").hover(
+			function(){							
+				$("body").append("<div class='preview-popup'></div>");
+				$(".preview-popup").css('left', $(this).position().left - 100);
+				$(".preview-popup").css('background-image', 'url("'+ self.images[ self.getNextIndex() ] +'")');
+				$(".preview-popup").css('background-size', 'contain');
+				$(".preview-popup").css('background-repeat', 'no-repeat');
+			},
+		
+			function() {
+				$(".preview-popup").remove();
+			}
+		);
+		
+		$("#prev").hover(
+			function(){							
+				$("body").append("<div class='preview-popup'></div>");
+				$(".preview-popup").css('left', $(this).position().left + $(this).width());
+				$(".preview-popup").css('background-image', 'url("'+ self.images[ self.getPrevIndex() ] +'")');
+				$(".preview-popup").css('background-size', 'contain');
+				$(".preview-popup").css('background-repeat', 'no-repeat');
+			},
+		
+			function() {
+				$(".preview-popup").remove();
+			}
+		);
 	}
 	
 	this.generateCarousel = function() {
