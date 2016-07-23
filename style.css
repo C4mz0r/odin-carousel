@@ -1,10 +1,10 @@
 #carousel {
 	width: 90%;
-	margin: 0 auto;
+	margin: 0 auto;		
 }
 
 .preview > img {
-	width: 100px;	
+	width: 100px;
 }
 
 #view {
@@ -15,21 +15,30 @@
 #view > img {
 	max-height: 400px;	
 }
+
+#preview {
+	display: flex;	
+	justify-content: center;	
+}
  
 .preview {
-	float:left;	
+	float:left;
 }
 
 #prev {
 	float:left;
+	height: 400px;
 }
 
 #next {
 	float:right;
+	height: 400px;
 }
 
 #circles {
-	clear: both;	
+	clear: both;
+	display: flex;
+	justify-content: center;
 }
 
 .circle {
