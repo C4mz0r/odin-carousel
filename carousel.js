@@ -35,13 +35,25 @@ function Carousel() {
 		for(var i = 0; i < this.images.length; i++) {
 			$("#preview").append("<div class='preview'><img src='"+ this.images[i] +"'></div>");
 		}
-		$("#preview").prepend("<div><button id='#prev'>Prev</button></div>");
-		$("#preview").append("<div><button id='#next'>Next</button></div>");
+		$("#preview").prepend("<div><button id='prev'>Prev</button></div>");
+		$("#preview").append("<div><button id='next'>Next</button></div>");
+		
+		self = this;
+		
+		$("#next").click(function(){		
+			self.next();			
+		});
+		
+		$("#prev").click(function(){		
+			self.prev();			
+		});
+		
 	}
 	
 	this.setup();
 	this.render();
 	
+
 }
 
 
