@@ -27,11 +27,16 @@ function Carousel() {
 	this.render = function() {		
 		var theImage = this.images[this.currentIndex];
 		$("#view").empty();		
-		$("#view").append("<img src='"+ theImage +"'>");
+		$("#view").append("<img src='"+ theImage +"'>");		
 	}
 	
 	this.setup = function() {
-		$("#carousel").append("<div id='view'>view</div><div id='preview'>preview</div>");
+		$("#carousel").append("<div id='view'></div><div id='preview'></div>");
+		for(var i = 0; i < this.images.length; i++) {
+			$("#preview").append("<div class='preview'><img src='"+ this.images[i] +"'></div>");
+		}
+		$("#preview").prepend("<div><button id='#prev'>Prev</button></div>");
+		$("#preview").append("<div><button id='#next'>Next</button></div>");
 	}
 	
 	this.setup();
