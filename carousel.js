@@ -27,7 +27,13 @@ function Carousel() {
 	this.render = function() {		
 		var theImage = this.images[this.currentIndex];
 		$("#view").empty();		
-		$("#view").append("<img src='"+ theImage +"'>");		
+		$("#view").append("<img src='"+ theImage +"'>");
+		this.updateSelectedCircle(this.currentIndex);
+	}
+	
+	this.updateSelectedCircle = function(index) {
+		$("#circles > .circle").removeClass('circle-filled');
+		$("#circles > .circle:eq("+this.currentIndex+")").addClass('circle-filled');
 	}
 	
 	this.setup = function() {
@@ -59,8 +65,7 @@ function Carousel() {
 		
 		$("#circles > .circle").click(function() {			
 			self.goToImage( $(this).index() ) ;
-			$("#circles > .circle").removeClass('circle-filled');
-			$(this).addClass('circle-filled');
+			self.updateSelectedCircle( $(this).index() );
 		});
 		
 	}
