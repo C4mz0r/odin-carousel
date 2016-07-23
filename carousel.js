@@ -1,9 +1,11 @@
 function Carousel() {
-	this.images = ['http://dreamatico.com/data_images/kitten/kitten-3.jpg',
-	 'https://missswedishkiwi.files.wordpress.com/2015/05/kitten3.jpg',
-	 'http://www.critterbabies.com/wp-content/gallery/kittens/teacup-kittens2.jpg',
-	 'http://dreamatico.com/data_images/kitten/kitten-5.jpg',
-	 'http://www.warrenphotographic.co.uk/photography/bigs/30399-Ginger-and-tabby-kittens-white-background.jpg'];
+	this.images = [
+		'images/kitten1.jpg',
+		'images/kitten2.jpg',
+		'images/kitten3.jpg',
+		'images/kitten4.jpg',
+		'images/kitten5.jpg',
+	];
 	this.currentIndex = 0;	
 	
 	this.next = function() {	
@@ -38,14 +40,15 @@ function Carousel() {
 	}
 		
 	
-	this.render = function() {		
+	this.render = function(direction) {		
+						
 		var theImage = this.images[this.currentIndex];
 		$("#view").empty();				
 		$("#view").css('background-image', 'url("'+ theImage +'")');
 		$("#view").css('background-size', 'contain');
 		$("#view").css('background-position', 'center center');
 	  $("#view").css('background-repeat', 'no-repeat');
-		
+						
 		this.updateSelectedCircle(this.currentIndex);
 	}
 	
@@ -113,7 +116,7 @@ function Carousel() {
 	this.generateCarousel = function() {
 		$("#carousel").append("<div><button id='prev'>&lt;</button></div>");		
 		$("#carousel").append("<div><button id='next'>&gt;</button></div>");
-		$("#carousel").append("<div id='view'></div><div id='preview'></div>");
+		$("#carousel").append("<div id='viewwrapper'><div id='view'></div></div><div id='preview'></div>");
 					
 		for(var i = 0; i < this.images.length; i++) {
 			$("#preview").append("<div class='preview'><img src='"+ this.images[i] +"'></div>");

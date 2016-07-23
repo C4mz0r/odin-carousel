@@ -5,6 +5,11 @@
 
 .preview > img {
 	width: 100px;
+	max-height: 100px;
+}
+
+#viewwrapper {
+	height: 400px;
 }
 
 #view {
