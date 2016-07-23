@@ -1,13 +1,19 @@
+#carousel {
+	width: 90%;
+	margin: 0 auto;
+}
+
 .preview > img {
 	width: 100px;	
 }
 
 #view {
 	height: 400px;
+	text-align: center;	
 }
 
 #view > img {
-	max-height: 400px;
+	max-height: 400px;	
 }
  
 .preview {
@@ -20,4 +26,20 @@
 
 #next {
 	float:right;
+}
+
+#circles {
+	clear: both;	
+}
+
+.circle {
+	border: 3px solid blue;
+	width: 10px;
+	height: 10px;
+	border-radius: 10px;
+	display: inline-block;	
+}
+
+.circle-filled {
+	background-color: blue;
 }

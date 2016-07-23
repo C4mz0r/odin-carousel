@@ -31,12 +31,16 @@ function Carousel() {
 	}
 	
 	this.setup = function() {
-		$("#carousel").append("<div id='view'></div><div id='preview'></div>");
+		$("#carousel").append("<div id='view'></div><div id='preview'></div>");		
 		for(var i = 0; i < this.images.length; i++) {
 			$("#preview").append("<div class='preview'><img src='"+ this.images[i] +"'></div>");
 		}
 		$("#preview").prepend("<div><button id='prev'>Prev</button></div>");
 		$("#preview").append("<div><button id='next'>Next</button></div>");
+		$("#preview").append("<div id='circles'></div>");
+		for(var i = 0; i < this.images.length; i++) {
+			$("#circles").append("<div class='circle'></div>");
+		}
 		
 		self = this;
 		
@@ -46,6 +50,17 @@ function Carousel() {
 		
 		$("#prev").click(function(){		
 			self.prev();			
+		});
+		
+		// Click on an image in the preview pane to load it in the view
+		$("#preview > .preview").click(function() { 
+			self.goToImage( $(this).index() - 1 ); 
+		});
+		
+		$("#circles > .circle").click(function() {			
+			self.goToImage( $(this).index() ) ;
+			$("#circles > .circle").removeClass('circle-filled');
+			$(this).addClass('circle-filled');
 		});
 		
 	}
