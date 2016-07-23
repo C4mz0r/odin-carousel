@@ -1,6 +1,9 @@
 function Carousel() {
-	this.images = ['http://ichef-1.bbci.co.uk/news/660/cpsprodpb/17A21/production/_85310869_85310700.jpg',
-	 'http://cdn.androidbeat.com/wp-content/uploads/2015/12/google-logo.jpg'];
+	this.images = ['http://dreamatico.com/data_images/kitten/kitten-3.jpg',
+	 'https://missswedishkiwi.files.wordpress.com/2015/05/kitten3.jpg',
+	 'http://www.critterbabies.com/wp-content/gallery/kittens/teacup-kittens2.jpg',
+	 'http://dreamatico.com/data_images/kitten/kitten-5.jpg',
+	 'http://www.warrenphotographic.co.uk/photography/bigs/30399-Ginger-and-tabby-kittens-white-background.jpg'];
 	this.currentIndex = 0;	
 	
 	this.next = function() {	
